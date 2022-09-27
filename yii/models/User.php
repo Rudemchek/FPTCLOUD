@@ -131,10 +131,10 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'email' => 'Email',
-            'password' => 'Password',
-            'rule' => 'Rule',
+            'name' => 'Введите имя',
+            'email' => 'Введте почту',
+            'password' => 'Пароль',
+            'rule' => 'Админ',
         ];
     }
 
