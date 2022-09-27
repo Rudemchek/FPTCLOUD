@@ -7,6 +7,7 @@ use yii\helpers\Html;
 
 ?>
 <div class="user-create">
+    
     <h1>Регистрация</h1>
     <?= $this->render('_form', [
         'model' => $model,
