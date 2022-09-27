@@ -2,7 +2,7 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=slavatbm.beget.tech;dbname=yii2basic',
+    'dsn' => 'mysql:host=slavatbm.beget.tech;dbname=slavatbm_base',
     'username' => 'slavatbm_base',
     'password' => 'sas2003!',
     'charset' => 'utf8',
