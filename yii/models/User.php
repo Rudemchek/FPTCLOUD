@@ -2,38 +2,37 @@
 
 namespace app\models;
 
-class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
+use Yii;
+
+/**
+ * This is the model class for table "user".
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property int $rule
+ *
+ * @property Friend[] $friends
+ * @property Friend[] $friends0
+ * @property User[] $idFriends
+ * @property Music[] $idMusics
+ * @property User[] $idUsers
+ * @property Message[] $messages
+ * @property Multimedia[] $multimedia
+ * @property Music[] $musics
+ * @property Mymusic[] $mymusics
+ */
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
-
-    private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
 
 
-    /**
+ /**
      * {@inheritdoc}
      */
     public static function findIdentity($id)
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        return self::findOne($id);
     }
 
     /**
@@ -41,12 +40,6 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }
-
         return null;
     }
 
@@ -58,13 +51,7 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public static function findByUsername($username)
     {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
-
-        return null;
+        return self::find()->where(['name' => $username])->one();
     }
 
     /**
@@ -80,7 +67,7 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public function getAuthKey()
     {
-        return $this->authKey;
+        return null;
     }
 
     /**
@@ -88,7 +75,7 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public function validateAuthKey($authKey)
     {
-        return $this->authKey === $authKey;
+        return null;
     }
 
     /**
@@ -100,5 +87,144 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     public function validatePassword($password)
     {
         return $this->password === $password;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'user';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['name', 'email', 'password'], 'required'],
+            [['rule'], 'integer'],
+            [['name'], 'string', 'max' => 100],
+            [['email'], 'string', 'max' => 320],
+            [['password'], 'string', 'max' => 32],
+            [['name'], 'unique'],
+            [['email'], 'unique'],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'name' => 'Name',
+            'email' => 'Email',
+            'password' => 'Password',
+            'rule' => 'Rule',
+        ];
+    }
+
+    /**
+     * Gets query for [[Friends]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFriends()
+    {
+        return $this->hasMany(Friend::class, ['idUser' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Friends0]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFriends0()
+    {
+        return $this->hasMany(Friend::class, ['idFriend' => 'id']);
+    }
+
+    /**
+     * Gets query for [[IdFriends]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdFriends()
+    {
+        return $this->hasMany(User::class, ['id' => 'idFriend'])->viaTable('friend', ['idUser' => 'id']);
+    }
+
+    /**
+     * Gets query for [[IdMusics]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdMusics()
+    {
+        return $this->hasMany(Music::class, ['id' => 'idMusic'])->viaTable('mymusic', ['idUser' => 'id']);
+    }
+
+    /**
+     * Gets query for [[IdUsers]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdUsers()
+    {
+        return $this->hasMany(User::class, ['id' => 'idUser'])->viaTable('friend', ['idFriend' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Messages]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMessages()
+    {
+        return $this->hasMany(Message::class, ['idUser' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Multimedia]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMultimedia()
+    {
+        return $this->hasMany(Multimedia::class, ['idUser' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Musics]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMusics()
+    {
+        return $this->hasMany(Music::class, ['idUser' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Mymusics]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMymusics()
+    {
+        return $this->hasMany(Mymusic::class, ['idUser' => 'id']);
     }
 }
