@@ -6,9 +6,10 @@
 
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
+use yii\helpers\Url;
 
 $this->title = 'Вход';
-$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
@@ -34,13 +35,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="form-group">
             <div class="offset-lg-1 col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <?php 
+                    echo Html::submitButton('Войти', ['class' => 'btn btn-primary mr-1', 'name' => 'login-button']);
+                    echo Html::a('Регистрация', Url::toRoute('user/create'), $options = ['class' => 'btn btn-primary m-1'])
+                ?>
             </div>
         </div>
 
     <?php ActiveForm::end(); ?>
 
     <?php 
-        Html::a('Регистрация', Url::toRoute('/user/create'), $options = [])
+       
     ?>
 </div>
