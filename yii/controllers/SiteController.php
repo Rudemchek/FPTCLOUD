@@ -63,7 +63,9 @@ class SiteController extends Controller
     { 
         if (Yii::$app->user->isGuest) {
             return $this->redirect('user/create');
-    }
+        }else {
+            return $this->redirect('message/index');
+        }
        
     }
    

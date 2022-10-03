@@ -39,4 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
     <?php ActiveForm::end(); ?>
+
+    <?php 
+        Html::a('Регистрация', Url::toRoute('/user/create'), $options = [])
+    ?>
 </div>
