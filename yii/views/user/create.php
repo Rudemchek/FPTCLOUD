@@ -12,5 +12,10 @@ use yii\helpers\Html;
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
+    <style>
 
+.flex-shrink-0{
+background-color: white;
+}
+        </style>
 </div>
