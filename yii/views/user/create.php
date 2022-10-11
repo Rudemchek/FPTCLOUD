@@ -14,7 +14,7 @@ use yii\helpers\Html;
     ]) ?>
     <style>
 
-.flex-shrink-0{
+{
 background-color: white;
 }
         </style>
