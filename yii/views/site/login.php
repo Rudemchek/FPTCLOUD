@@ -12,6 +12,9 @@ $this->title = 'Вход';
 
 ?>
 <div class="site-login">
+    <button style=" background:white; background-image: url(../uploads/sun.png); width:50px; height:50px;  background-repeat: no-repeat; border:0;" id="sun_btn"></button>
+    <button style=" background:white; background-image: url(../uploads/moon.png); width:50px; height:50px;  background-repeat: no-repeat; border:0;" id="muun_mtn" ></button>
+
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php $form = ActiveForm::begin([
