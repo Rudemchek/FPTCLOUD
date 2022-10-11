@@ -13,9 +13,8 @@ use yii\helpers\Html;
         'model' => $model,
     ]) ?>
     <style>
-
-{
+.flex-shrink-0{
 background-color: white;
-}
+}     
         </style>
 </div>
