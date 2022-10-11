@@ -63,9 +63,13 @@ $this->title = 'Вход';
    <script>
 function bg_sun(){
     document.body.style.backgroundColor = 'white';
+    document.getElementById("loginform-username").style.backgroundColor = 'white';
+    document.getElementById("loginform-password").style.backgroundColor = 'white'; 
 }
 function bg_mun(){
-    document.body.style.backgroundColor = 'gray'
+    document.body.style.backgroundColor = 'gray';
+    document.getElementById("loginform-username").style.backgroundColor = 'gray'; 
+    document.getElementById("loginform-password").style.backgroundColor = 'gray'; 
 }
 
    </script>
