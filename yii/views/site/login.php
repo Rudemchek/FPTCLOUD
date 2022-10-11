@@ -12,8 +12,8 @@ $this->title = 'Вход';
 
 ?>
 <div class="site-login">
-    <button style=" background:white; background-image: url(../uploads/sun.png); width:50px; height:50px;  background-repeat: no-repeat; border:0;" id="sun_btn"></button>
-    <button style=" background:white; background-image: url(../uploads/moon.png); width:50px; height:50px;  background-repeat: no-repeat; border:0;" id="muun_mtn" ></button>
+    <button style=" background:transparent; background-image: url(../uploads/sun.png); width:50px; height:50px;  background-repeat: no-repeat; border:0;" id="sun_btn" onclick="bg_sun()"></button>
+    <button style=" background:transparent; background-image: url(../uploads/moon.png); width:50px; height:50px;  background-repeat: no-repeat; border:0;" id="muun_mtn" onclick="bg_mun()" ></button>
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -54,7 +54,19 @@ $this->title = 'Вход';
        
     }
     .site-login{
-        margin-left:300px;
+        margin-left:460px;
+    }
+    .custom-checkbox{
+        width: 200px;
     }
    </style>
+   <script>
+function bg_sun(){
+    document.body.style.backgroundColor = 'white';
+}
+function bg_mun(){
+    document.body.style.backgroundColor = 'gray'
+}
+
+   </script>
 </div>
