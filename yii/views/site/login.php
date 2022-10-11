@@ -16,13 +16,13 @@ $this->title = 'Вход';
     <button style=" background:transparent; background-image: url(../uploads/moon.png); width:50px; height:50px;  background-repeat: no-repeat; border:0;" id="muun_mtn" onclick="bg_mun()" ></button>
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+ 
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
         'layout' => 'horizontal',
         'fieldConfig' => [
             'template' => "{label}\n{input}\n{error}",
-            'labelOptions' => ['class' => 'col-lg-1 col-form-label mr-lg-3'],
+            'labelOptions' => ['class' => 'col-lg-1 col-form-label mr-lg-3 color-grey'],
             'inputOptions' => ['class' => 'col-lg-3 form-control'],
             'errorOptions' => ['class' => 'col-lg-7 invalid-feedback'],
         ],
@@ -35,18 +35,19 @@ $this->title = 'Вход';
         <?= $form->field($model, 'rememberMe')->checkbox([
             'template' => "<div class=\"offset-lg-1 col-lg-3 custom-control custom-checkbox\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
         ]) ?>
-
+  
         <div class="form-group">
             <div class="offset-lg-1 col-lg-11">
                 <?php 
-                    echo Html::submitButton('Войти', ['class' => 'btn btn-primary mr-1', 'name' => 'login-button']);
-                    echo Html::a('Регистрация', Url::toRoute('user/create'), $options = ['class' => 'btn btn-primary m-1'])
+                    echo Html::submitButton('Войти', ['class' => 'btn btn-primary mr-1 section_btn-login', 'name' => 'login-button']);
+                    echo Html::a('Регистрация', Url::toRoute('user/create'), $options = ['class' => 'btn btn-primary m-1 mr-1 section_btn-creat'])
                 ?>
             </div>
         </div>
-
+     
     <?php ActiveForm::end(); ?>
-
+    <section class="content_login">
+    </section>
    <style>
 
     #login-form{
@@ -54,10 +55,30 @@ $this->title = 'Вход';
        
     }
     .site-login{
-        margin-left:460px;
+        margin-left:450px;
     }
     .custom-checkbox{
         width: 200px;
+    }
+    .color-grey{
+        color:brown;
+    }
+    .content_login{
+        background: black;
+      position: relative;
+    bottom: 150px;
+      width: 500px;
+    }
+    .section_btn-login{
+        position: relative;
+        right: 45px;
+        width: 120px;
+
+    }
+    .section_btn-creat{
+        position: relative;
+        left: 135px;
+        width: 120px;
     }
    </style>
    <script>
@@ -73,4 +94,22 @@ function bg_mun(){
 }
 
    </script>
+   <script>
+    function a()
+    {document.getElementById('info').innerHTML = '../uploads/sun.png' + 'drftghjk';}
+    function b()
+    {document.getElementById('info').innerHTML = 'kod6';}   
+
+    document.getElementById('sun_btn').addEventListener('click', function() {
+  let l = document.createElement('img');
+  l.src = '../uploads/sun.png';
+  document.body.appendChild(l);
+});  
+</script>
+
+</head>
+<body>
+<input type="button" value="Hello!" name="hello" OnClick="a();">
+<input type="button" value="Hello!" name="hello" OnClick="b();">
+<div id="info"></div>
 </div>
