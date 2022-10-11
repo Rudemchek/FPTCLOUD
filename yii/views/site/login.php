@@ -47,7 +47,14 @@ $this->title = 'Вход';
 
     <?php ActiveForm::end(); ?>
 
-    <?php 
+   <style>
+
+    #login-form{
+        max-width: 400px;
        
-    ?>
+    }
+    .site-login{
+        margin-left:300px;
+    }
+   </style>
 </div>
