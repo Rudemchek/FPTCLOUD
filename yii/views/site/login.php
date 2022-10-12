@@ -103,6 +103,7 @@ function bg_mun(){
     document.getElementById('sun_btn').addEventListener('click', function() {
   let l = document.createElement('img');
   l.src = '../uploads/sun.png';
+  
   document.body.appendChild(l);
 });  
 </script>
